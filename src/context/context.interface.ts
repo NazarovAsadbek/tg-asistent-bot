@@ -1,7 +1,9 @@
 import {Context} from "telegraf";
 
 export interface SessionData {
-    courseLike: boolean;
+    isAgreeReceiveNotifications: boolean;
+    notificationInterval: string;
+    notificationText: string;
 }
 
 export interface IBotContext extends Context {
