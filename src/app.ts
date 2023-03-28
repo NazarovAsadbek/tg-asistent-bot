@@ -5,6 +5,8 @@ import {ConfigService} from "./config/config.service";
 import {IBotContext} from "./context/context.interface";
 import {Command} from "./commands/command.class";
 import {StartCommand} from "./commands/start.command";
+import {ChooseIntervalCommand} from "./commands/choose-interval.command";
+import {SendMessageCommand} from "./commands/send-message.command";
 
 class Bot {
     bot: Telegraf<IBotContext>;
@@ -19,7 +21,9 @@ class Bot {
 
     init() {
         this.commands = [
-            new StartCommand(this.bot)
+            new StartCommand(this.bot),
+            new ChooseIntervalCommand(this.bot),
+            new SendMessageCommand(this.bot)
         ];
         for (const command of this.commands) {
             command.handle();
