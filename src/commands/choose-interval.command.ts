@@ -26,6 +26,7 @@ export class ChooseIntervalCommand extends Command {
     }
 
     setNotificationInterval(result: string) {
+        console.log('Бот принял интервал от пользователя, он равен: ' + result, new Date().toLocaleDateString());
         this.bot.action(result, (ctx) => {
             ctx.session.notificationInterval = result;
 

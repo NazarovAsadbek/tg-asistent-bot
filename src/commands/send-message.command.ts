@@ -9,6 +9,8 @@ export class SendMessageCommand extends Command {
 
     handle() {
         this.bot.on('text', async (ctx) => {
+            console.log('Бот обработал данные пользователя: message.text', new Date().toLocaleDateString());
+
             ctx.session.notificationText = ctx.message.text;
             await this.sendNotificationByUserInterval(ctx);
         });
@@ -24,6 +26,7 @@ export class SendMessageCommand extends Command {
             const currentHour = currentTime.getHours();
 
             if (currentHour >= 8 && currentHour < 24) {
+                console.log('Бот отправил сообщение, пользователю ' + ctx.update.message.chat.id, 'с текстом: ' + ctx.session.notificationText, new Date().toLocaleDateString());
                 await ctx.telegram.sendMessage(userId, message);
             }
         };

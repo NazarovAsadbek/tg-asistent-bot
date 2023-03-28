@@ -9,6 +9,7 @@ export class StartCommand extends Command {
 
     handle() {
         this.bot.start((ctx) => {
+            console.log('Бот запушен.', new Date().toLocaleDateString());
             ctx.reply('Хотите ли Вы получать уведомления каждый день?', Markup.inlineKeyboard([
                     Markup.button.callback('Да', 'yes'),
                     Markup.button.callback('Нет', 'no')
@@ -17,6 +18,7 @@ export class StartCommand extends Command {
         });
 
         this.bot.action('no', (ctx) => {
+            console.log('Бот остановлен.', new Date().toLocaleDateString());
             ctx.session.isAgreeReceiveNotifications = false;
 
             ctx.editMessageText('Окай. Добра!');
